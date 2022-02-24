@@ -5,15 +5,13 @@
  * Use of this software requires acceptance of the Spryker Marketplace License Agreement. See LICENSE file.
  */
 
-namespace Spryker\Client\MerchantProductStorage\Plugin\MerchantProductOfferStorage;
+namespace Spryker\Client\MerchantProductStorage\Plugin\ProductOfferStorage;
 
 use Generated\Shared\Transfer\ProductOfferStorageCriteriaTransfer;
-use Spryker\Client\MerchantProductOfferStorageExtension\Dependency\Plugin\ProductOfferReferenceStrategyPluginInterface;
+use Spryker\Client\Kernel\AbstractPlugin;
+use Spryker\Client\ProductOfferStorageExtension\Dependency\Plugin\ProductOfferReferenceStrategyPluginInterface;
 
-/**
- * @deprecated Use {@link \Spryker\Client\MerchantProductStorage\Plugin\ProductOfferStorage\MerchantProductProductOfferReferenceStrategyPlugin} instead.
- */
-class MerchantProductProductOfferReferenceStrategyPlugin implements ProductOfferReferenceStrategyPluginInterface
+class MerchantProductProductOfferReferenceStrategyPlugin extends AbstractPlugin implements ProductOfferReferenceStrategyPluginInterface
 {
     /**
      * {@inheritDoc}
