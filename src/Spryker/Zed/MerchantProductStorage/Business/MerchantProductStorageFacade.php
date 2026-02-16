@@ -10,8 +10,6 @@ namespace Spryker\Zed\MerchantProductStorage\Business;
 use Spryker\Zed\Kernel\Business\AbstractFacade;
 
 /**
- * @method \Spryker\Zed\MerchantProductStorage\Persistence\MerchantProductStorageEntityManagerInterface getEntityManager()
- * @method \Spryker\Zed\MerchantProductStorage\Persistence\MerchantProductStorageRepositoryInterface getRepository()
  * @method \Spryker\Zed\MerchantProductStorage\Business\MerchantProductStorageBusinessFactory getFactory()
  */
 class MerchantProductStorageFacade extends AbstractFacade implements MerchantProductStorageFacadeInterface
