@@ -19,9 +19,6 @@ use Spryker\Client\MerchantProductStorage\Reader\MerchantProductStorageReaderInt
 
 class MerchantProductStorageFactory extends AbstractFactory
 {
-    /**
-     * @return \Spryker\Client\MerchantProductStorage\Reader\MerchantProductStorageReaderInterface
-     */
     public function createMerchantProductStorageReader(): MerchantProductStorageReaderInterface
     {
         return new MerchantProductStorageReader(
@@ -31,33 +28,21 @@ class MerchantProductStorageFactory extends AbstractFactory
         );
     }
 
-    /**
-     * @return \Spryker\Client\MerchantProductStorage\Expander\ProductViewMerchantProductExpanderInterface
-     */
     public function createProductViewMerchantProductExpander(): ProductViewMerchantProductExpanderInterface
     {
         return new ProductViewMerchantProductExpander($this->createMerchantProductStorageReader());
     }
 
-    /**
-     * @return \Spryker\Client\MerchantProductStorage\Mapper\MerchantProductStorageMapperInterface
-     */
     public function createMerchantProductStorageMapper(): MerchantProductStorageMapperInterface
     {
         return new MerchantProductStorageMapper();
     }
 
-    /**
-     * @return \Spryker\Client\MerchantProductStorage\Dependency\Client\MerchantProductStorageToProductStorageClientInterface
-     */
     public function getProductStorageClient(): MerchantProductStorageToProductStorageClientInterface
     {
         return $this->getProvidedDependency(MerchantProductStorageDependencyProvider::CLIENT_PRODUCT_STORAGE);
     }
 
-    /**
-     * @return \Spryker\Client\MerchantProductStorage\Dependency\Client\MerchantProductStorageToLocaleClientInterface
-     */
     public function getLocaleClient(): MerchantProductStorageToLocaleClientInterface
     {
         return $this->getProvidedDependency(MerchantProductStorageDependencyProvider::CLIENT_LOCALE);

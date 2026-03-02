@@ -29,11 +29,6 @@ class MerchantProductStorageWriter implements MerchantProductStorageWriterInterf
      */
     protected $productStorageFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantProductStorage\Dependency\Facade\MerchantProductStorageToEventBehaviorFacadeInterface $eventBehaviorFacade
-     * @param \Spryker\Zed\MerchantProductStorage\Dependency\Facade\MerchantProductStorageToMerchantProductFacadeInterface $merchantProductFacade
-     * @param \Spryker\Zed\MerchantProductStorage\Dependency\Facade\MerchantProductStorageToProductStorageFacadeInterface $productStorageFacade
-     */
     public function __construct(
         MerchantProductStorageToEventBehaviorFacadeInterface $eventBehaviorFacade,
         MerchantProductStorageToMerchantProductFacadeInterface $merchantProductFacade,
@@ -82,11 +77,6 @@ class MerchantProductStorageWriter implements MerchantProductStorageWriterInterf
         $this->publishAbstractProductsByMerchantProductCriteria($merchantProductCriteriaTransfer);
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer
-     *
-     * @return void
-     */
     protected function publishAbstractProductsByMerchantProductCriteria(MerchantProductCriteriaTransfer $merchantProductCriteriaTransfer): void
     {
         $merchantProductCollectionTransfer = $this->merchantProductFacade->get($merchantProductCriteriaTransfer);

@@ -24,11 +24,6 @@ class MerchantProductStorageDependencyProvider extends AbstractDependencyProvide
      */
     public const CLIENT_LOCALE = 'CLIENT_LOCALE';
 
-    /**
-     * @param \Spryker\Client\Kernel\Container $container
-     *
-     * @return \Spryker\Client\Kernel\Container
-     */
     public function provideServiceLayerDependencies(Container $container): Container
     {
         $container = parent::provideServiceLayerDependencies($container);
@@ -39,11 +34,6 @@ class MerchantProductStorageDependencyProvider extends AbstractDependencyProvide
         return $container;
     }
 
-    /**
-     * @param \Spryker\Client\Kernel\Container $container
-     *
-     * @return \Spryker\Client\Kernel\Container
-     */
     protected function addProductStorageClient(Container $container): Container
     {
         $container->set(static::CLIENT_PRODUCT_STORAGE, function (Container $container) {
@@ -55,11 +45,6 @@ class MerchantProductStorageDependencyProvider extends AbstractDependencyProvide
         return $container;
     }
 
-    /**
-     * @param \Spryker\Client\Kernel\Container $container
-     *
-     * @return \Spryker\Client\Kernel\Container
-     */
     protected function addLocaleClient(Container $container): Container
     {
         $container->set(static::CLIENT_LOCALE, function (Container $container) {

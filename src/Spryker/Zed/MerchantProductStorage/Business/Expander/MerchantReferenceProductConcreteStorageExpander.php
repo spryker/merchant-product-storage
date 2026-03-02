@@ -18,9 +18,6 @@ class MerchantReferenceProductConcreteStorageExpander implements MerchantReferen
      */
     protected $merchantProductFacade;
 
-    /**
-     * @param \Spryker\Zed\MerchantProductStorage\Dependency\Facade\MerchantProductStorageToMerchantProductFacadeInterface $merchantProductFacade
-     */
     public function __construct(
         MerchantProductStorageToMerchantProductFacadeInterface $merchantProductFacade
     ) {

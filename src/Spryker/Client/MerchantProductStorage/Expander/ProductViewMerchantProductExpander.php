@@ -32,19 +32,11 @@ class ProductViewMerchantProductExpander implements ProductViewMerchantProductEx
      */
     protected $merchantProductStorageReader;
 
-    /**
-     * @param \Spryker\Client\MerchantProductStorage\Reader\MerchantProductStorageReaderInterface $merchantProductStorageReader
-     */
     public function __construct(MerchantProductStorageReaderInterface $merchantProductStorageReader)
     {
         $this->merchantProductStorageReader = $merchantProductStorageReader;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\ProductViewTransfer $productViewTransfer
-     *
-     * @return \Generated\Shared\Transfer\ProductViewTransfer
-     */
     public function expandProductViewTransfer(ProductViewTransfer $productViewTransfer): ProductViewTransfer
     {
         $productSelectedAttributes = $productViewTransfer->getSelectedAttributes();

@@ -11,10 +11,5 @@ use Generated\Shared\Transfer\MerchantProductStorageTransfer;
 
 interface MerchantProductStorageReaderInterface
 {
-    /**
-     * @param int $idProductAbstract
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductStorageTransfer|null
-     */
     public function findOne(int $idProductAbstract): ?MerchantProductStorageTransfer;
 }

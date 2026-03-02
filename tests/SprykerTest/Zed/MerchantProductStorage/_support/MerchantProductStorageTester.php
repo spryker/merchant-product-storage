@@ -44,9 +44,6 @@ class MerchantProductStorageTester extends Actor
      */
     protected const DEFAULT_CURRENCY = 'EUR';
 
-    /**
-     * @return void
-     */
     public function addDependencies(): void
     {
         $this->setDependency(StoreDependencyProvider::PLUGINS_STORE_EXPANDER, [
@@ -54,11 +51,6 @@ class MerchantProductStorageTester extends Actor
         ]);
     }
 
-    /**
-     * @param int $idProductAbstract
-     *
-     * @return \Orm\Zed\ProductStorage\Persistence\SpyProductAbstractStorage
-     */
     public function getAbstractProductStorageByIdProductAbstract(int $idProductAbstract): SpyProductAbstractStorage
     {
         return SpyProductAbstractStorageQuery::create()
@@ -66,17 +58,11 @@ class MerchantProductStorageTester extends Actor
             ->findOne();
     }
 
-    /**
-     * @return \Spryker\Zed\Merchant\Business\MerchantFacadeInterface
-     */
     public function getMerchantFacade(): MerchantFacadeInterface
     {
         return $this->getLocator()->merchant()->facade();
     }
 
-    /**
-     * @return \Spryker\Client\StoreExtension\Dependency\Plugin\StoreExpanderPluginInterface
-     */
     protected function createStoreStorageStoreExpanderPluginMock(): StoreExpanderPluginInterface
     {
         $storeTransfer = (new StoreTransfer())

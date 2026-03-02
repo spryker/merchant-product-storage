@@ -29,11 +29,6 @@ class MerchantProductStorageReader implements MerchantProductStorageReaderInterf
      */
     protected $merchantProductStorageMapper;
 
-    /**
-     * @param \Spryker\Client\MerchantProductStorage\Dependency\Client\MerchantProductStorageToProductStorageClientInterface $productStorageClient
-     * @param \Spryker\Client\MerchantProductStorage\Dependency\Client\MerchantProductStorageToLocaleClientInterface $localeClient
-     * @param \Spryker\Client\MerchantProductStorage\Mapper\MerchantProductStorageMapperInterface $merchantProductStorageMapper
-     */
     public function __construct(
         MerchantProductStorageToProductStorageClientInterface $productStorageClient,
         MerchantProductStorageToLocaleClientInterface $localeClient,
@@ -44,11 +39,6 @@ class MerchantProductStorageReader implements MerchantProductStorageReaderInterf
         $this->merchantProductStorageMapper = $merchantProductStorageMapper;
     }
 
-    /**
-     * @param int $idProductAbstract
-     *
-     * @return \Generated\Shared\Transfer\MerchantProductStorageTransfer|null
-     */
     public function findOne(int $idProductAbstract): ?MerchantProductStorageTransfer
     {
         $productStorageData = $this->productStorageClient

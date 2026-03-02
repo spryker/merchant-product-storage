@@ -9,8 +9,5 @@ namespace Spryker\Client\MerchantProductStorage\Dependency\Client;
 
 interface MerchantProductStorageToLocaleClientInterface
 {
-    /**
-     * @return string
-     */
     public function getCurrentLocale(): string;
 }
