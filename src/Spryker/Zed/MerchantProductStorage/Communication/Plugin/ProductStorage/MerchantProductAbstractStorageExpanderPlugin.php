@@ -20,6 +20,13 @@ use Spryker\Zed\ProductStorageExtension\Dependency\Plugin\ProductAbstractStorage
 class MerchantProductAbstractStorageExpanderPlugin extends AbstractPlugin implements ProductAbstractStorageExpanderPluginInterface
 {
     /**
+     * @var array<int|string, string|null>
+     */
+    protected static array $productToMerchantCache = [];
+
+    protected const string NEGATIVE_CACHE = '';
+
+    /**
      * {@inheritDoc}
      * - Expands the provided ProductAbstractStorage transfer object.
      * - Finds merchant product relation for ProductAbstractStorage.idProductAbstract.
@@ -33,17 +40,26 @@ class MerchantProductAbstractStorageExpanderPlugin extends AbstractPlugin implem
      */
     public function expand(ProductAbstractStorageTransfer $productAbstractStorageTransfer): ProductAbstractStorageTransfer
     {
-        $merchantProductCriteriaTransfer = (new MerchantProductCriteriaTransfer())
-            ->setIdProductAbstract($productAbstractStorageTransfer->getIdProductAbstract());
+        if (!isset(static::$productToMerchantCache[$productAbstractStorageTransfer->getIdProductAbstract()])) {
+            $merchantProductCriteriaTransfer = (new MerchantProductCriteriaTransfer())
+                ->setIdProductAbstract($productAbstractStorageTransfer->getIdProductAbstract());
 
-        $merchantTransfer = $this->getFactory()
-            ->getMerchantProductFacade()
-            ->findMerchant($merchantProductCriteriaTransfer);
+            $merchantTransfer = $this->getFactory()
+                ->getMerchantProductFacade()
+                ->findMerchant($merchantProductCriteriaTransfer);
 
-        if (!$merchantTransfer || !$merchantTransfer->getIsActive()) {
+            if (!$merchantTransfer || !$merchantTransfer->getIsActive()) {
+                static::$productToMerchantCache[$productAbstractStorageTransfer->getIdProductAbstract()] = static::NEGATIVE_CACHE;
+
+                return $productAbstractStorageTransfer;
+            }
+            static::$productToMerchantCache[$productAbstractStorageTransfer->getIdProductAbstract()] = $merchantTransfer->getMerchantReference();
+        }
+
+        if (static::$productToMerchantCache[$productAbstractStorageTransfer->getIdProductAbstract()] === static::NEGATIVE_CACHE) {
             return $productAbstractStorageTransfer;
         }
 
-        return $productAbstractStorageTransfer->setMerchantReference($merchantTransfer->getMerchantReference());
+        return $productAbstractStorageTransfer->setMerchantReference(static::$productToMerchantCache[$productAbstractStorageTransfer->getIdProductAbstract()]);
     }
 }

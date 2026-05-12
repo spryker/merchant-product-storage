@@ -36,12 +36,12 @@ class MerchantProductConcreteStorageCollectionExpanderPluginTest extends Unit
     {
         // Arrange
         $merchantProductConcreteStorageCollectionExpanderPlugin = new MerchantProductConcreteStorageCollectionExpanderPlugin();
-        $productAbstractTransfer = $this->tester->haveProductAbstract();
+        $productConcreteTransfer = $this->tester->haveProduct();
         $merchantTransfer = $this->tester->haveMerchant();
         $merchantProductTransfer = $this->tester->haveMerchantProduct(
             [
                 MerchantProductTransfer::ID_MERCHANT => $merchantTransfer->getIdMerchantOrFail(),
-                MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productAbstractTransfer->getIdProductAbstractOrFail(),
+                MerchantProductTransfer::ID_PRODUCT_ABSTRACT => $productConcreteTransfer->getFkProductAbstract(),
             ],
         );
 

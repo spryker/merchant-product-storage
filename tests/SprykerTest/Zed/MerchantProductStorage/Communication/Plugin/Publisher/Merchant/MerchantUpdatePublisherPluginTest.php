@@ -10,6 +10,7 @@ namespace SprykerTest\Zed\MerchantProductStorage\Communication\Plugin\Publisher\
 use Codeception\Test\Unit;
 use Generated\Shared\Transfer\EventEntityTransfer;
 use Generated\Shared\Transfer\MerchantProductTransfer;
+use ReflectionClass;
 use Spryker\Client\Kernel\Container;
 use Spryker\Client\Queue\QueueDependencyProvider;
 use Spryker\Shared\MerchantProductStorage\MerchantProductStorageConfig;
@@ -52,7 +53,7 @@ class MerchantUpdatePublisherPluginTest extends Unit
     protected function setUp(): void
     {
         parent::setUp();
-
+        $this->clearInternalCache();
         $this->tester->setDependency(QueueDependencyProvider::QUEUE_ADAPTERS, function (Container $container) {
             return [
                 $this->tester->getLocator()->rabbitMq()->client()->createQueueAdapter(),
@@ -96,6 +97,7 @@ class MerchantUpdatePublisherPluginTest extends Unit
         );
 
         $merchantTransfer->setIsActive(false);
+        $this->clearInternalCache();
         $this->tester->getMerchantFacade()->updateMerchant($merchantTransfer);
         $eventTransfers = [
             (new EventEntityTransfer())->setId($merchantTransfer->getIdMerchant()),
@@ -110,5 +112,11 @@ class MerchantUpdatePublisherPluginTest extends Unit
 
         // Assert
         $this->assertNull($productAbstractStorageEntityWithoutMerchant->getData()['merchant_reference']);
+    }
+
+    protected function clearInternalCache(): void
+    {
+        $reflection = new ReflectionClass(MerchantProductAbstractStorageExpanderPlugin::class);
+        $reflection->getProperty('productToMerchantCache')->setValue(null, []);
     }
 }
