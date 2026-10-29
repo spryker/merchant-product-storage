@@ -13,6 +13,8 @@ use Spryker\Zed\PublisherExtension\Dependency\Plugin\PublisherPluginInterface;
 
 /**
  * @deprecated Use {@link \Spryker\Zed\MerchantProduct\Communication\Plugin\Publisher\MerchantProductPublisherPlugin} instead.
+ *   This plugin has performance problems: on every merchant event it republishes the storage of all merchant products in one queue message,
+ *   also when no relevant merchant column changed.
  *
  * @method \Spryker\Zed\MerchantProductStorage\MerchantProductStorageConfig getConfig()
  * @method \Spryker\Zed\MerchantProductStorage\Business\MerchantProductStorageFacadeInterface getFacade()
